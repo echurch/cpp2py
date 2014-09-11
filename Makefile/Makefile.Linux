@@ -1,0 +1,9 @@
+
+CXX		= $(MYFMWK_CXX)
+LD              = g++
+LDFLAGS         += -Wl,-rpath,$(MAKE_TOP_DIR)/lib
+FFLAGS          += -Wall
+FLDFLAGS        += -lstdc++ -shared 
+CXXFLAGS        += -g -O3 -std=c++0x -W -Wall -Wno-deprecated -fPIC -D_CORE_$(shell uname -s)_
+SOMAKER         = g++
+SOFLAGS         = -g -shared 
