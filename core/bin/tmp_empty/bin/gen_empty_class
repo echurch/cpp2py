@@ -4,14 +4,14 @@ import sys, os
 if len(sys.argv)<2:
    sys.stderr.write('Usage: %s CLASS_NAME\n\n' % sys.argv[0])
    sys.exit(1)
-if not 'USER_DEV_DIR' in os.environ.keys():
-   sys.stderr.write('$USER_DEV_DIR not defined!\n\n')
+if not 'LITE_FMWK_COREDIR' in os.environ.keys():
+   sys.stderr.write('$LITE_FMWK_COREDIR not defined!\n\n')
    sys.exit(1)
 
 name=sys.argv[1]
 working_package='Package_Name'
-target_dir='%s/Package_Name' % os.environ['USER_DEV_DIR']
-source_dir='%s/Package_Name/bin/tmp' % os.environ['USER_DEV_DIR']
+target_dir='%s/Package_Name' % os.environ['LITE_FMWK_COREDIR']
+source_dir='%s/Package_Name/bin/tmp' % os.environ['LITE_FMWK_COREDIR']
 
 in_source='%s/empty.cc' % source_dir
 in_header='%s/empty.hh' % source_dir
@@ -66,7 +66,7 @@ print ' OR'
 print '    > cd %s; make;' % target_dir
 print
 print 'If needed, make sure you define linked libraries in rootmap generation script.'
-print 'The script is: %s/gen_rootmap.sh' % os.environ['LARLIGHT_LIBDIR']
+print 'The script is: lib/gen_rootmap.sh' 
 print 'If you have no idea what this means, just ignore it!'
 print
 print 'To remove your analysis code, you should remove:'

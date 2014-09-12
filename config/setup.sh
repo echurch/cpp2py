@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# If MAKE_TOP_DIR not set, try to guess
-if [[ -z $MAKE_TOP_DIR ]]; then
+# If LITE_FMWK_BASEDIR not set, try to guess
+if [[ -z $LITE_FMWK_BASEDIR ]]; then
     # Find the location of this script:
     me="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     # Find the directory one above.
-    export MAKE_TOP_DIR="$( cd "$( dirname "$me" )" && pwd )"
+    export LITE_FMWK_BASEDIR="$( cd "$( dirname "$me" )" && pwd )"
 fi
 
-echo "MAKE_TOP_DIR = $MAKE_TOP_DIR"
-if [[ -z $MAKE_TOP_DIR ]]; then
-    echo \$MAKE_TOP_DIR not set! 
+echo "LITE_FMWK_BASEDIR = $LITE_FMWK_BASEDIR"
+if [[ -z $LITE_FMWK_BASEDIR ]]; then
+    echo \$LITE_FMWK_BASEDIR not set! 
     echo You have to set this first.
 else 
     # Abort if ROOT not installed. Let's check rootcint for this.
@@ -22,35 +22,35 @@ else
 	echo
 	return;
     fi
-    MYFMWK_OS=`uname -s`
+    LITE_FMWK_OS=`uname -s`
     # Set for core build
-    export MYFMWK_LIBDIR=$MAKE_TOP_DIR/lib
-    export MYFMWK_CORE_DIR=$MAKE_TOP_DIR/core
+    export LITE_FMWK_LIBDIR=$LITE_FMWK_BASEDIR/lib
+    export LITE_FMWK_COREDIR=$LITE_FMWK_BASEDIR/core
 
     # Set for user dev build
     export CORE_RELPATH=core
-    export CORE_DIR=$MAKE_TOP_DIR/$CORE_RELPATH
+    export CORE_DIR=$LITE_FMWK_BASEDIR/$CORE_RELPATH
 
     if [[ -z $USER_MODULE ]]; then
 	export USER_MODULE=""
     fi
 
     # Check compiler availability for clang++ and g++
-    MYFMWK_CXX=clang++
-    if [ `command -v $MYFMWK_CXX` ]; then
-	export MYFMWK_CXX="clang++ -std=c++11";
+    LITE_FMWK_CXX=clang++
+    if [ `command -v $LITE_FMWK_CXX` ]; then
+	export LITE_FMWK_CXX="clang++ -std=c++11";
     else
-	MYFMWK_CXX=g++
-	if [[ -z `command -v $MYFMWK_CXX` ]]; then
+	LITE_FMWK_CXX=g++
+	if [[ -z `command -v $LITE_FMWK_CXX` ]]; then
 	    echo
 	    echo Looks like you do not have neither clang or g++!
 	    echo You need one of those to compile LArLight... Abort config...
 	    echo
 	    return;
 	fi
-	export MYFMWK_CXX;
-	if [ $MYFMWK_OS = 'Darwin' ]; then
-	    echo $MYFMWK_OS
+	export LITE_FMWK_CXX;
+	if [ $LITE_FMWK_OS = 'Darwin' ]; then
+	    echo $LITE_FMWK_OS
 	    echo
 	    echo "***************** COMPILER WARNING *******************"
 	    echo "*                                                    *"
@@ -94,19 +94,19 @@ else
 	export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH;
     fi
 
-    python $MAKE_TOP_DIR/config/python/gen_coremakefile.py
-    python $MAKE_TOP_DIR/config/python/gen_topmakefile.py
-    export LD_LIBRARY_PATH=$MYFMWK_LIBDIR:$LD_LIBRARY_PATH
-    if [ $MYFMWK_OS = 'Darwin' ]; then
-	export DYLD_LIBRARY_PATH=$MYFMWK_LIBDIR:$DYLD_LIBRARY_PATH
+    python $LITE_FMWK_BASEDIR/config/python/gen_coremakefile.py
+    python $LITE_FMWK_BASEDIR/config/python/gen_topmakefile.py
+    export LD_LIBRARY_PATH=$LITE_FMWK_LIBDIR:$LD_LIBRARY_PATH
+    if [ $LITE_FMWK_OS = 'Darwin' ]; then
+	export DYLD_LIBRARY_PATH=$LITE_FMWK_LIBDIR:$DYLD_LIBRARY_PATH
     fi
-    mkdir -p $MAKE_TOP_DIR/bin
-    mkdir -p $MAKE_TOP_DIR/lib
+    mkdir -p $LITE_FMWK_BASEDIR/bin
+    mkdir -p $LITE_FMWK_BASEDIR/lib
 
-    export PATH=$MAKE_TOP_DIR/bin:$PATH
+    export PATH=$LITE_FMWK_BASEDIR/bin:$PATH
     echo
     echo "Finish configuration. To build, type:"
-    echo "> cd \$MAKE_TOP_DIR"
+    echo "> cd \$LITE_FMWK_BASEDIR"
     echo "> make"
     echo
 fi

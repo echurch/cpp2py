@@ -1,35 +1,35 @@
 #####################################################################################
 #
 # A top Makefile for building my project.
-# One needs to define $MAKE_TOP_DIR to build the sub directories.
+# One needs to define $LITE_FMWK_BASEDIR to build the sub directories.
 #
 #####################################################################################
 #
-# IMPOSE CONDITION BETWEEN MAKE_TOP_DIR & PWD =>
-#   do not compile if PWD !=$MAKE_TOP_DIR is set elsewhere
+# IMPOSE CONDITION BETWEEN LITE_FMWK_BASEDIR & PWD =>
+#   do not compile if PWD !=$LITE_FMWK_BASEDIR is set elsewhere
 #
-ifndef MAKE_TOP_DIR
- MAKE_TOP_DIR := $(shell cd . && pwd -P)
+ifndef LITE_FMWK_BASEDIR
+ LITE_FMWK_BASEDIR := $(shell cd . && pwd -P)
 endif
-NORMALIZED_MAKE_TOP_DIR := $(shell cd ${MAKE_TOP_DIR} && pwd -P)
-ifneq ($(NORMALIZED_MAKE_TOP_DIR), $(shell cd . && pwd -P))
+NORMALIZED_LITE_FMWK_BASEDIR := $(shell cd ${LITE_FMWK_BASEDIR} && pwd -P)
+ifneq ($(NORMALIZED_LITE_FMWK_BASEDIR), $(shell cd . && pwd -P))
  ifneq ($(wildcard ./PMTDecoder/*),)
-ERROR_MESSAGE := $(error Your source code detected in current dir, but MAKE_TOP_DIR is not current dir.  \
+ERROR_MESSAGE := $(error Your source code detected in current dir, but LITE_FMWK_BASEDIR is not current dir.  \
    To avoid recompiling the wrong installation,\
-   MAKE_TOP_DIR must be set to the current directory when making.  \
-   Currently it is set to ${MAKE_TOP_DIR} [$(NORMALIZED_MAKE_TOP_DIR)].  \
+   LITE_FMWK_BASEDIR must be set to the current directory when making.  \
+   Currently it is set to ${LITE_FMWK_BASEDIR} [$(NORMALIZED_LITE_FMWK_BASEDIR)].  \
    Current directory is $(shell pwd).)
  endif
 endif
-export MAKE_TOP_DIR
+export LITE_FMWK_BASEDIR
 
 all:
-	@mkdir -p $(MAKE_TOP_DIR)/lib
+	@mkdir -p $(LITE_FMWK_BASEDIR)/lib
 	@echo "Start building core"
 	@make --directory=$(MYFMWK_CORE_DIR)
 	@echo
 	@echo "Start building main"
-	@make --directory=$(MAKE_TOP_DIR)/main
+	@make --directory=$(LITE_FMWK_BASEDIR)/main
 	@echo 
 	@echo "Exiting"
 
@@ -38,7 +38,11 @@ clean:
 	@make clean --directory=$(MYFMWK_CORE_DIR)
 	@echo
 	@echo "Cleaning main"
-	@make clean --directory=$(MAKE_TOP_DIR)/main
+	@make clean --directory=$(LITE_FMWK_BASEDIR)/main
+	@echo
+	@echo "Cleaning lib"
+	@rm -f  $(LITE_FMWK_LIBDIR)/*.so
+	@rm -f  $(LITE_FMWK_LIBDIR)/*.rootmap
 	@echo
 	@echo "Exiting"
 
@@ -48,10 +52,10 @@ clean:
 #
 doxygen:
 	@echo 'dOxygenising your code...'
-	@doxygen $(MAKE_TOP_DIR)/doc/doxygenMyProject.script
+	@doxygen $(LITE_FMWK_BASEDIR)/doc/doxygenMyProject.script
 
 doxygen+:
 	@echo 'dOxygenising MyProject + local-ROOT...'
-	@doxygen $(MAKE_TOP_DIR)/doc/doxygenMyProject+.script
+	@doxygen $(LITE_FMWK_BASEDIR)/doc/doxygenMyProject+.script
 #
 #####################################################################################

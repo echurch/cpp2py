@@ -1,7 +1,7 @@
 #####################################################################################
 #
 # A top Makefile for building my project.
-# One needs to define $CORE_DIR environment variable and set it to where this
+# One needs to define $LITE_FMWK_COREDIR environment variable and set it to where this
 # makefile exists. 
 # One can type "make" and this builds packages that are added in $SUBDIR defined below.
 # 
@@ -9,23 +9,23 @@
 #
 #####################################################################################
 #
-# IMPOSE CONDITION BETWEEN CORE_DIR & PWD =>
-#   do not compile if PWD !=$CORE_DIR is set elsewhere
+# IMPOSE CONDITION BETWEEN LITE_FMWK_COREDIR & PWD =>
+#   do not compile if PWD !=$LITE_FMWK_COREDIR is set elsewhere
 #
-ifndef CORE_DIR
- CORE_DIR := $(shell cd . && pwd -P)
+ifndef LITE_FMWK_COREDIR
+ LITE_FMWK_COREDIR := $(shell cd . && pwd -P)
 endif
-NORMALIZED_CORE_DIR := $(shell cd ${CORE_DIR} && pwd -P)
-ifneq ($(NORMALIZED_CORE_DIR), $(shell cd . && pwd -P))
+NORMALIZED_LITE_FMWK_COREDIR := $(shell cd ${LITE_FMWK_COREDIR} && pwd -P)
+ifneq ($(NORMALIZED_LITE_FMWK_COREDIR), $(shell cd . && pwd -P))
  ifneq ($(wildcard ./Base/*),)
-ERROR_MESSAGE := $(error Your source code detected in current dir, but CORE_DIR is not current dir.  \
+ERROR_MESSAGE := $(error Your source code detected in current dir, but LITE_FMWK_COREDIR is not current dir.  \
    To avoid recompiling the wrong installation,\
-   CORE_DIR must be set to the current directory when making.  \
-   Currently it is set to ${CORE_DIR} [$(NORMALIZED_CORE_DIR)].  \
+   LITE_FMWK_COREDIR must be set to the current directory when making.  \
+   Currently it is set to ${LITE_FMWK_COREDIR} [$(NORMALIZED_LITE_FMWK_COREDIR)].  \
    Current directory is $(shell pwd).)
  endif
 endif
-export CORE_DIR
+export LITE_FMWK_COREDIR
 #
 #####################################################################################
 #
@@ -47,7 +47,7 @@ all:
 # CLEANs...
 #
 clean:
-	@for i in $(SUBDIRS); do ( echo "" && echo "Cleaning $$i..." && cd $$i && $(MAKE) clean && rm -f $(LARLIGHT_LIBDIR)/$$i.* ) || exit $$?; done
+	@for i in $(SUBDIRS); do ( echo "" && echo "Cleaning $$i..." && cd $$i && $(MAKE) clean && rm -f $(LITE_FMWK_LIBDIR)/$$i.* ) || exit $$?; done
 
 #####################################################################################
 #
@@ -55,13 +55,13 @@ clean:
 #
 doxygen:
 	@echo 'dOxygenising your code...'
-	@mkdir -p $(CORE_DIR)/doc/dOxygenMyProject
-	@doxygen $(CORE_DIR)/doc/doxygenMyProject.script
+	@mkdir -p $(LITE_FMWK_COREDIR)/doc/dOxygenMyProject
+	@doxygen $(LITE_FMWK_COREDIR)/doc/doxygenMyProject.script
 
 doxygen+:
 	@echo 'dOxygenising MyProject + local-ROOT...'
-	@mkdir -p $(CORE_DIR)/doc/dOxygenMyProject+
-	@doxygen $(CORE_DIR)/doc/doxygenMyProject+.script
+	@mkdir -p $(LITE_FMWK_COREDIR)/doc/dOxygenMyProject+
+	@doxygen $(LITE_FMWK_COREDIR)/doc/doxygenMyProject+.script
 #
 #####################################################################################
 #EOF

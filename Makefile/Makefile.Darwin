@@ -1,6 +1,6 @@
 #COMPILER:
 CC              = gcc
-CXX             = $(MYFMWK_CXX)
+CXX             = $(LITE_FMWK_CXX)
 LINKER          = libtool
 SOMAKER         = libtool 
 

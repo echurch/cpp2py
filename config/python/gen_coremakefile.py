@@ -1,11 +1,11 @@
 import os,sys,commands
 
-# check if MAKE_TOP_DIR is defined. If not, nothing to do.
-if not 'MAKE_TOP_DIR' in os.environ:
+# check if LITE_FMWK_BASEDIR is defined. If not, nothing to do.
+if not 'LITE_FMWK_BASEDIR' in os.environ:
     sys.exit(1)
 
 # read in template GNUmakefile
-makefile=open('%s/config/template/CoreMakefile.tmp' % os.environ['MAKE_TOP_DIR'],'r').read()
+makefile=open('%s/config/template/CoreMakefile.tmp' % os.environ['LITE_FMWK_BASEDIR'],'r').read()
 
 # if SRT_LOCAL is not defined, generate makefile w/o LAR_PACKAGE definition
 if not 'CORE_DIR' in os.environ or not 'USER_MODULE' in os.environ:
