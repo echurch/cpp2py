@@ -77,6 +77,6 @@ print ' OR'
 print '    > cd %s; make;' % target_dir
 print
 print 'If needed, make sure you define linked libraries in rootmap generation script.'
-print 'The script is: %s/make_rootmap.sh' % os.environ['MYFMWK_LIBDIR']
+print 'The script is: %s/make_rootmap.sh' % target_dir
 print
 sys.exit(0)
