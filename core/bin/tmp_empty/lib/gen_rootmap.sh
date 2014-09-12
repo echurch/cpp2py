@@ -16,4 +16,4 @@ rootlibmap() {
 
 ######################################################
 # Package_Name
-rootlibmap libPackage_Name.rootmap libPackage_Name.so $CORE_DIR/Package_Name/LinkDef.h 
+rootlibmap libPackage_Name.rootmap libPackage_Name.so $LITE_FMWK_COREDIR/Package_Name/LinkDef.h 
