@@ -10,5 +10,7 @@
 #pragma link off all functions;
 
 #pragma link C++ class DaqFile+;
+#pragma link C++ class Integral+;
 //ADD_NEW_CLASS ... do not change this line
 #endif
+

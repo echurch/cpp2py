@@ -10,6 +10,8 @@
 
 // Class forward declaration here
 class DaqFile;
+  class Integral;
 //ADD_EMPTY_CLASS ... do not change this comment line
 
 #endif
+

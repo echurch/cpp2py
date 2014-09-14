@@ -33,6 +33,7 @@ extern void G__set_cpp_environmentDaqFileCint();
 #include "TMemberInspector.h"
 #include "DaqFile.hh"
 #include "DaqFile-TypeDef.hh"
+#include "Integral.hh"
 #include <algorithm>
 namespace std { }
 using namespace std;
@@ -47,5 +48,6 @@ extern G__linked_taginfo G__DaqFileCintLN_reverse_iteratorlEvectorlEROOTcLcLTSch
 extern G__linked_taginfo G__DaqFileCintLN_vectorlETVirtualArraymUcOallocatorlETVirtualArraymUgRsPgR;
 extern G__linked_taginfo G__DaqFileCintLN_reverse_iteratorlEvectorlETVirtualArraymUcOallocatorlETVirtualArraymUgRsPgRcLcLiteratorgR;
 extern G__linked_taginfo G__DaqFileCintLN_DaqFile;
+extern G__linked_taginfo G__DaqFileCintLN_Integral;
 
 /* STUB derived class for protected member access */

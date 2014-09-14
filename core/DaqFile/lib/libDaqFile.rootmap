@@ -1,1 +1,2 @@
 Library.DaqFile:                            libDaqFile.so
+Library.Integral:                           libDaqFile.so
