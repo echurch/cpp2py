@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# If LITE_FMWK_BASEDIR not set, try to guess
-if [[ -z $LITE_FMWK_BASEDIR ]]; then
-    # Find the location of this script:
-    me="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-    # Find the directory one above.
-    export LITE_FMWK_BASEDIR="$( cd "$( dirname "$me" )" && pwd )"
-fi
+# Find the location of this script:
+me="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Find the directory one above.
+export LITE_FMWK_BASEDIR="$( cd "$( dirname "$me" )" && pwd )"
 
 echo "LITE_FMWK_BASEDIR = $LITE_FMWK_BASEDIR"
 if [[ -z $LITE_FMWK_BASEDIR ]]; then
