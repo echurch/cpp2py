@@ -34,20 +34,3 @@ extern void G__set_cpp_environmentDaqFileCint();
 #include "DaqFile.hh"
 #include "DaqFile-TypeDef.hh"
 #include "Integral.hh"
-#include <algorithm>
-namespace std { }
-using namespace std;
-
-#ifndef G__MEMFUNCBODY
-#endif
-
-extern G__linked_taginfo G__DaqFileCintLN_basic_ifstreamlEcharcOchar_traitslEchargRsPgR;
-extern G__linked_taginfo G__DaqFileCintLN_string;
-extern G__linked_taginfo G__DaqFileCintLN_vectorlEROOTcLcLTSchemaHelpercOallocatorlEROOTcLcLTSchemaHelpergRsPgR;
-extern G__linked_taginfo G__DaqFileCintLN_reverse_iteratorlEvectorlEROOTcLcLTSchemaHelpercOallocatorlEROOTcLcLTSchemaHelpergRsPgRcLcLiteratorgR;
-extern G__linked_taginfo G__DaqFileCintLN_vectorlETVirtualArraymUcOallocatorlETVirtualArraymUgRsPgR;
-extern G__linked_taginfo G__DaqFileCintLN_reverse_iteratorlEvectorlETVirtualArraymUcOallocatorlETVirtualArraymUgRsPgRcLcLiteratorgR;
-extern G__linked_taginfo G__DaqFileCintLN_DaqFile;
-extern G__linked_taginfo G__DaqFileCintLN_Integral;
-
-/* STUB derived class for protected member access */

@@ -44,10 +44,10 @@ public:
   int  NumEvents()     { return nevents; }; /// only valid if ClosedCleanly() 
   int GetEventData(unsigned int entry, char* &outEventData, size_t &outEventSize);
 
-  /*
+  
   std::shared_ptr<gov::fnal::uboone::datatypes::eventRecord> GetEvent(int entry);
   std::shared_ptr<gov::fnal::uboone::datatypes::eventRecord> GetNextEvent();
-  */
+  
 
 private:
   bool      good;
