@@ -13,6 +13,7 @@ OBJECTS = $(SOURCES:.cc=.o)
 INCFLAGS  = -I$(LITE_FMWK_COREDIR)
 INCFLAGS += -I./                       #Include itself
 INCFLAGS += -I$(BOOST_INC)
+INCFLAGS += -I$(ROOT_INC)
 INCFLAGS += -I$(UBOONEDAQ_DATATYPES_INC)
 
 # platform-specific options
