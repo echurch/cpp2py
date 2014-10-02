@@ -16,4 +16,5 @@ rootlibmap() {
 
 ######################################################
 # DaqFile
-rootlibmap libDaqFile.rootmap libDaqFile.so $LITE_FMWK_COREDIR/DaqFile/LinkDef.h 
+rootlibmap libDaqFile.rootmap libDaqFile.so $LITE_FMWK_COREDIR/DaqFile/LinkDef.h \
+    libboost_serialization.so
