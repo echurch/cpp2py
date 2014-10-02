@@ -26,7 +26,7 @@ export LITE_FMWK_BASEDIR
 all:
 	@mkdir -p $(LITE_FMWK_BASEDIR)/lib
 	@echo "Start building core"
-	@make --directory=$(MYFMWK_CORE_DIR)
+	@make --directory=$(LITE_FMWK_COREDIR)
 	@echo
 	@echo "Start building main"
 	@make --directory=$(LITE_FMWK_BASEDIR)/main
@@ -35,7 +35,7 @@ all:
 
 clean:
 	@echo "Cleaning core"
-	@make clean --directory=$(MYFMWK_CORE_DIR)
+	@make clean --directory=$(LITE_FMWK_COREDIR)
 	@echo
 	@echo "Cleaning main"
 	@make clean --directory=$(LITE_FMWK_BASEDIR)/main
