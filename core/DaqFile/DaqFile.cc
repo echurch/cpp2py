@@ -81,6 +81,14 @@ DaqFile::~DaqFile()
   if(index_buffer) delete [] index_buffer;
 }
 
+eventRecord const& DaqFile::GetEventObj     (int entry)
+{
+  return (*(GetEvent(entry)));
+}
+eventRecord const& DaqFile::GetNextEventObj ()
+{
+  return (*(GetNextEvent()));
+}
 
 int DaqFile::GetEventData(unsigned int entry, char* &outEventData, size_t &outEventSize)
 {
@@ -100,7 +108,7 @@ int DaqFile::GetEventData(unsigned int entry, char* &outEventData, size_t &outEv
   
   return 1;
 }
-/*
+
 std::shared_ptr<eventRecord> DaqFile::GetEvent(int entry)
 {
   m_entry = entry;
@@ -157,6 +165,5 @@ std::shared_ptr<eventRecord> DaqFile::GetNextEvent()
   m_entry++;
   return std::shared_ptr<eventRecord>(); // Return an empty pointer.
 }
-*/
 
 #endif

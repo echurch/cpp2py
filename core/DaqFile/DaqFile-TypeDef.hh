@@ -9,9 +9,18 @@
 #include "DaqFile.hh"
 
 // Class forward declaration here
-class DaqFile;
-  class Integral;
-//ADD_EMPTY_CLASS ... do not change this comment line
+namespace gov {
+  namespace fnal {
+    namespace uboone {
+      namespace datatypes {
+	//  class Integral;
 
+      }
+    }
+  }
+}
+
+class DaqFile;
+//ADD_EMPTY_CLASS ... do not change this comment line
 #endif
 
