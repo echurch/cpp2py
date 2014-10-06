@@ -11,7 +11,7 @@
 
 //#pragma link C++ class gov::fnal::uboone::datatypes::DaqFile+;
 #pragma link C++ class DaqFile+;
-//#pragma link C++ class Integral+;
+#pragma link C++ class Integral+;
 //ADD_NEW_CLASS ... do not change this line
 #endif
 

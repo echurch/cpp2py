@@ -7,6 +7,7 @@
 
 // Header files included here
 #include "DaqFile.hh"
+#include "Integral.hh"
 
 // Class forward declaration here
 namespace gov {
