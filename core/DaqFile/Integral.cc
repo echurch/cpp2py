@@ -18,7 +18,8 @@
 using namespace gov::fnal::uboone::datatypes;
 
 
-Integral::Integral(gov::fnal::uboone::dispatcher::KvpSet& config)
+Integral::Integral(gov::fnal::uboone::dispatcher::KvpSet& config) {};
+Integral::Integral()
   : m_file_cycle(0)
   , m_events_processed(0)
   , m_run(0)
@@ -36,12 +37,17 @@ Integral::Integral(gov::fnal::uboone::dispatcher::KvpSet& config)
   plexSource     = m_config.getString("plexusInterface_fallback","postgresql");
   plexConnection = m_config.getString("plexusConnection_fallback","host=localhost port=5432");
 
+
+  std::cout << "Integral()::Integral(): m_plexus pre-buildFromPostgresql: plexSource is " << plexSource << std::endl;
   if(plexSource=="postgresql") {
     m_plexus.buildFromPostgresql(plexConnection);
+  std::cout << "Integral()::Integral(): m_plexus post-buildFromPostgresql " << std::endl;
     if(!m_plexus.is_ok()) {
       std::cout << "Cannot connect to database using " << plexSource << " and " << plexConnection << std::endl;
     }
   }
+
+  /*
   if(!m_plexus.is_ok() && config.has("plexusConnection_fallback")) {
     plexSource     = m_config.getString("plexusInterface_fallback","postgresql");
     plexConnection = m_config.getString("plexusConnection_fallback","host=localhost port=5432");
@@ -52,6 +58,7 @@ Integral::Integral(gov::fnal::uboone::dispatcher::KvpSet& config)
       }
     }    
   }
+  */
 
   if(!m_plexus.is_ok()) {
     std::cout << "Reverting to hard-coded connections mapping, since no DB is working." << std::endl;
@@ -66,7 +73,7 @@ Integral::Integral(gov::fnal::uboone::dispatcher::KvpSet& config)
 void Integral::integrate(gov::fnal::uboone::datatypes::eventRecord& record)
 {
   if(!&record) return; // null pointer
-  m_current_eventRecord.reset(&record);
+  m_current_eventRecord = new eventRecord(record);
   
   //  gov::fnal::uboone::dispatcher::Timer timer;
   uint32_t run =  m_current_eventRecord->getGlobalHeader().getRunNumber();
@@ -160,8 +167,8 @@ void Integral::integrate(gov::fnal::uboone::datatypes::eventRecord& record)
   
   
   
-  m_current_eventRecord.reset();
-  
+  //  m_current_eventRecord->reset();
+  delete m_current_eventRecord;
 
   //  double t = timer.Count();
   std::cout << "benchmark: Integrated " << m_channel_count_tpc.crates << " TPC crates, "

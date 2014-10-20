@@ -1,4 +1,4 @@
-/**
+**
  * \file Integral.hh
  *
  * \ingroup DaqFile
@@ -24,8 +24,10 @@
 
 #include "TTimeStamp.h"
 
+				 //#include "dispatcher/KvpSet.h"
 #include "KvpSet.h"
 #include "Plexus.h"
+				 //#include "online_monitor/Plexus.h"
 
 namespace gov {namespace fnal {namespace uboone {namespace datatypes {
 	class eventRecord;
@@ -78,13 +80,14 @@ class Integral{
 public:
 
   /// Default constructor
-  //  Integral(){};
+  //Integral(){};
+  Integral ();
   Integral (gov::fnal::uboone::dispatcher::KvpSet& k);
   /// Default destructor
   virtual ~Integral(){};
 
 
-  //  using namespace gov::fnal::uboone;
+  //    using namespace gov::fnal::uboone;
   //  using namespace gov::fnal::uboone::datatypes;
   // Top-level things:
 
@@ -154,10 +157,10 @@ public:
   uint32_t          m_file_cycle;
 
   // Statistics & state:
-#ifndef __CINT__    
-  std::shared_ptr<gov::fnal::uboone::datatypes::eventRecord> m_current_eventRecord;
-#endif
-  //const gov::fnal::uboone::datatypes::eventRecord m_current_eventRecord;
+  //#ifndef __CINT__    
+  //std::shared_ptr<gov::fnal::uboone::datatypes::eventRecord> m_current_eventRecord;
+  //#endif
+  gov::fnal::uboone::datatypes::eventRecord *m_current_eventRecord;
 
   // General properties of this event:
   uint32_t m_events_processed;
