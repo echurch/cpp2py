@@ -15,9 +15,9 @@ namespace fnal
 {
 namespace uboone
 {
-namespace online
+namespace online2
 {
-
+  
 class sqlite3;
 
 class Plexus
@@ -89,6 +89,7 @@ protected:
 
   PlekPtr_t m_nullplek;  
 };
+
         
 }}}} // namespace
 

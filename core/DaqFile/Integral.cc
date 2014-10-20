@@ -664,7 +664,7 @@ ChannelCount Integral::integrateTpcWire(int crate, int card, int channel, const 
   // Raw adc: detector-wide,crate-wide,card-wide,each channel... 
   
   // Plex lookup
-  gov::fnal::uboone::online::Plexus::PlekPtr_t plek = m_plexus.get(crate,card,channel);
+  gov::fnal::uboone::online2::Plexus::PlekPtr_t plek = m_plexus.get(crate,card,channel);
   int wire = (&plek)->planewire(); // -1 if not mapped to a tpc wire.
   int plane = (&plek)->plane();
   

@@ -24,8 +24,8 @@
 
 #include "TTimeStamp.h"
 
-#include "KvpSet.h"
-#include "Plexus.h"
+#include "dispatcher/KvpSet.h"
+#include "./Plexus.h"
 
 namespace gov {namespace fnal {namespace uboone {namespace datatypes {
 	class eventRecord;
@@ -191,7 +191,7 @@ public:
   gov::fnal::uboone::dispatcher::KvpSet m_config;
   bool        m_fake_event_times;
 
-  gov::fnal::uboone::online::Plexus m_plexus;
+  gov::fnal::uboone::online2::Plexus m_plexus; // use this local version, not from gov::fnal::uboone::online_monitor, due to shared_ptr
 
 };
 

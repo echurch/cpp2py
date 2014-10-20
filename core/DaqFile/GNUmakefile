@@ -15,6 +15,7 @@ INCFLAGS += -I./                       #Include itself
 INCFLAGS += -I$(BOOST_INC)
 INCFLAGS += -I$(ROOT_INC)
 INCFLAGS += -I$(UBOONEDAQ_DATATYPES_INC)
+INCFLAGS += -I/home/echurch/development/install/uboonedaq/v5_00_01/include
 
 # platform-specific options
 OSNAME          = $(shell uname -s)

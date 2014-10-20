@@ -11,7 +11,7 @@ namespace fnal
 {
 namespace uboone
 {
-namespace online
+namespace online2
 {
 
 Plexus::Plek::Plek()
