@@ -1,4 +1,5 @@
 
+
 #ifndef DAQFILE_CC
 #define DAQFILE_CC
 
@@ -53,13 +54,13 @@ DaqFile::DaqFile( const std::string& pathname )
   
   // Danger danger will robinson!  Endian totally unchecked!
   nevents = *(uint32_t*)(buff);
-  //cout << " nevents = " << std::dec << nevents << endl;
+  std::cout << " nevents = " << std::dec << nevents << std::endl;
   uint16_t endOfFileMarker = *(uint16_t*)(buff+4);
-  // cout << " eof marker = 0x" << std::hex << endOfFileMarker << endl;
+  std::cout << " eof marker = 0x" << std::hex << endOfFileMarker << std::endl;
   ifs.clear();    
   ifs.seekg(0,ifs.beg);
 
-  // cout << std::dec << nevents << " events in file." << endl;
+  std::cout << std::dec << nevents << " events in file." << std::endl;
   closedCleanly = true;
   if(endOfFileMarker != 0xe0f0) {
     closedCleanly = false;
